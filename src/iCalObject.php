@@ -82,7 +82,9 @@ abstract class iCalObject
         if ($this->childIsValid($child) === true) {
             array_push($this->child_objects, $child);
         } else {
-            throw new \Exception("Invalid child: " . get_class($child));
+            $reflect = new \ReflectionClass($child);
+            $classname = strtoupper($reflect->getShortName());
+            throw new \Exception("Invalid child: " . $classname);
         }
     }
 
@@ -94,7 +96,8 @@ abstract class iCalObject
      */
     function childIsValid(iCalObject $child)
     {
-        $classname = strtoupper(get_class($child));
+        $reflect = new \ReflectionClass($child);
+        $classname = strtoupper($reflect->getShortName());
         return in_array($classname, $this->valid_childs);
     }
 
@@ -106,7 +109,8 @@ abstract class iCalObject
      */
     function __toString()
     {
-        $classname = strtoupper(get_class($this));
+        $reflect = new \ReflectionClass($this);
+        $classname = strtoupper($reflect->getShortName());
         $mystring = "BEGIN:" .$classname. "\n";
         $mystring .= $this->properties;
 
@@ -126,8 +130,8 @@ abstract class iCalObject
 class VCalendar extends iCalObject
 {
     protected $valid_childs = [
-        "MSICAL\\VEVENT"
-        ,"MSICAL\\VTIMEZONE"
+        "VEVENT"
+        ,"VTIMEZONE"
     ];
 
     function __construct(VCalendarProperties $properties, array $childs)
@@ -159,8 +163,8 @@ class VEvent extends iCalObject
 class VTimezone extends iCalObject
 {
     protected $valid_childs = [
-          "MSICAL\\DAYLIGHT"
-        , "MSICAL\\STANDARD"
+          "DAYLIGHT"
+        , "STANDARD"
     ];
 
     function __construct(VTimezoneProperties $properties, array $childs)
@@ -207,3 +211,4 @@ function print_vcalendar(VCalendar $cal)
 {
 	echo $cal;
 }
+
