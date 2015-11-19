@@ -207,5 +207,3 @@ function print_vcalendar(VCalendar $cal)
 {
 	echo $cal;
 }
-
-?>

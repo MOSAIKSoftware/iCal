@@ -183,6 +183,3 @@ Defaults::$veventProperties = new VEventProperties(
 Defaults::$vtimezoneProperties = new VTimezoneProperties("");
 Defaults::$daylightProperties = new DaylightProperties("", "", "", "");
 Defaults::$standardProperties =  new StandardProperties("", "", "", "");
-
-
-?>
