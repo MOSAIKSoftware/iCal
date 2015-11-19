@@ -21,7 +21,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-include 'iCal_object.php';
+include 'src/iCalObject.php';
 
 /**
  * Manual test functions
@@ -31,9 +31,9 @@ include 'iCal_object.php';
  * @copyright MIT
  */
 
-$vevent = new vevent($default_vevent_properties);
-$vcal = new vcalendar($default_vcalendar_properties, [$vevent]);
+$vevent = new \MsiCal\VEvent(\MsiCal\$default_vevent_properties);
+$vcal = new \MsiCal\VCalendar(\MsiCal\$default_vcalendar_properties, [$vevent]);
 
-print_vcalendar($vcal);
+\MsiCal\print_vcalendar($vcal);
 
 ?>

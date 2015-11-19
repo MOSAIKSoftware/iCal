@@ -20,8 +20,8 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-include 'iCal_properties.php';
+namespace MsiCal;
+include 'iCalProperties.php';
 
 /**
  * A set of classes and functions to deal with the iCalendar format
@@ -38,7 +38,7 @@ include 'iCal_properties.php';
  *
  * @abstract
  */
-abstract class iCal_object
+abstract class iCalObject
 {
     /**
      * The properties of the iCalendar object
@@ -47,7 +47,7 @@ abstract class iCal_object
      * Initialized as null.
      *
      * @access protected
-     * @var iCal_properties
+     * @var iCalProperties
      */
     protected    $properties    = null;
     /**
@@ -56,14 +56,14 @@ abstract class iCal_object
      * Initialized as empty array.
      *
      * @access protected
-     * @var iCal_object[]
+     * @var iCalObject[]
      */
     protected    $child_objects = [];
     /**
      * The valid childs for this kind of object
      *
      * This is used to determine
-     * in @see child_is_valid if the given child is allowed. Initialized as
+     * in @see childIsValid if the given child is allowed. Initialized as
      * empty array. Represents the calendar components, such as "VEVENT".
      *
      * @access protected
@@ -74,12 +74,12 @@ abstract class iCal_object
     /**
      * Adds a child object to the current object
      *
-     * @param iCal_object $child the child object to add
+     * @param iCalObject $child the child object to add
      * @throws if the child is not valid, throws an exception
      */
-    function add_child(iCal_object $child)
+    function addChild(iCalObject $child)
     {
-        if ($this->child_is_valid($child) == true) {
+        if ($this->childIsValid($child) == true) {
             array_push($this->child_objects, $child);
         } else {
             throw new Exception("Invalid child!");
@@ -89,10 +89,10 @@ abstract class iCal_object
     /**
      * Checks if the child is valid for the current object
      *
-     * @param iCal_object $child the child to validate
+     * @param iCalObject $child the child to validate
      * @return bool true if the child is valid, false otherwise
      */
-    function child_is_valid(iCal_object $child)
+    function childIsValid(iCalObject $child)
     {
         $classname = strtoupper(get_class($child));
         return in_array($classname, $this->valid_childs);
@@ -123,19 +123,19 @@ abstract class iCal_object
 /**
  * Class for the "VCALENDAR" component
  */
-class vcalendar extends iCal_object
+class VCalendar extends iCalObject
 {
     protected $valid_childs = [
           "VEVENT"
         , "VTIMEZONE"
     ];
 
-    function __construct(vcalendar_properties $properties, array $childs)
+    function __construct(VCalendarProperties $properties, array $childs)
     {
         $this->properties = $properties;
 
         foreach($childs as $child) {
-            $this->add_child($child);
+            $this->addChild($child);
         }
     }
 }
@@ -143,10 +143,10 @@ class vcalendar extends iCal_object
 /**
  * Class for the "VEVENT" component
  */
-class vevent extends iCal_object
+class VEvent extends iCalObject
 {
 
-    function __construct(vevent_properties $properties)
+    function __construct(VEventProperties $properties)
     {
         $this->properties = $properties;
     }
@@ -156,19 +156,19 @@ class vevent extends iCal_object
 /**
  * Class for the "VTIMEZONE" component
  */
-class vtimezone extends iCal_object
+class VTimezone extends iCalObject
 {
     protected $valid_childs = [
           "DAYLIGHT"
         , "STANDARD"
     ];
 
-    function __construct(vtimezone_properties $properties, array $childs)
+    function __construct(VTimezoneProperties $properties, array $childs)
     {
         $this->properties = $properties;
 
         foreach($childs as $child) {
-            $this->add_child($child);
+            $this->addChild($child);
         }
     }
 }
@@ -176,9 +176,9 @@ class vtimezone extends iCal_object
 /**
  * Class for the "DAYLIGHT" component
  */
-class daylight extends iCal_object
+class Daylight extends iCalObject
 {
-    function __construct(daylight_properties $properties)
+    function __construct(DaylightProperties $properties)
     {
         $this->properties = $properties;
     }
@@ -187,9 +187,9 @@ class daylight extends iCal_object
 /**
  * Class for the "STANDARD" component
  */
-class standard extends iCal_object
+class Standard extends iCalObject
 {
-    function __construct(vtimezone_properties $properties)
+    function __construct(VTimezoneProperties $properties)
     {
         $this->properties = $properties;
     }
@@ -201,9 +201,9 @@ class standard extends iCal_object
  * This is used for serving the actual calendar once it has been
  * constructed.
  *
- * @param vcalendar $cal the calendar to print
+ * @param VCalendar $cal the calendar to print
  */
-function print_vcalendar(vcalendar $cal)
+function print_vcalendar(VCalendar $cal)
 {
 	echo $cal;
 }

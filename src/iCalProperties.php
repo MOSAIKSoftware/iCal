@@ -20,6 +20,7 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+namespace MsiCal;
 
 /**
  * A set of classes to abstract out the properties of various iCalendar
@@ -35,14 +36,14 @@
 /**
  * Abstract interface class for iCalendar properties
  */
-abstract class iCal_properties {
+abstract class iCalProperties {
 
 }
 
 /**
  * Class representing the properties for the "VCALENDAR" component
  */
-class vcalendar_properties extends iCal_properties
+class VCalendarProperties extends iCalProperties
 {
     private $version  = "";
     private $method   = "";
@@ -81,7 +82,7 @@ class vcalendar_properties extends iCal_properties
 /**
  * Class representing the properties for the "VEVENT" component
  */
-class vevent_properties extends iCal_properties
+class VEventProperties extends iCalProperties
 {
     private $uid         = "";
     private $dtstart     = "";
@@ -115,7 +116,7 @@ class vevent_properties extends iCal_properties
 /**
  * Class representing the properties for the "VTIMEZONE" component
  */
-class vtimezone_properties extends iCal_properties
+class VTimezoneProperties extends iCalProperties
 {
     private $tzid = "";
 
@@ -134,7 +135,7 @@ class vtimezone_properties extends iCal_properties
 /**
  * Class representing the properties for the "DAYLIGHT" component
  */
-class daylight_properties extends iCal_properties
+class DaylightProperties extends iCalProperties
 {
     private $tzoffsetfrom = "";
     private $tzoffsetto   = "";
@@ -161,20 +162,19 @@ class daylight_properties extends iCal_properties
 /**
  * Class representing the properties for the "STANDARD" component
  */
-class standard_properties extends daylight_properties
+class StandardProperties extends DaylightProperties
 {
 
 }
 
-
 // defaults for the properties
-$default_vcalendar_properties = new vcalendar_properties(
+$default_vcalendar_properties = new VCalendarProperties(
     "", "", "", "", "", "", "", "");
-$default_vevent_properties = new vevent_properties(
+$default_vevent_properties = new VEventProperties(
     "", "", "", "", "", "");
-$default_vtimezone_properties = new vtimezone_properties("");
-$default_daylight_properties = new daylight_properties("", "", "", "");
-$default_standard_properties = new standard_properties("", "", "", "");
+$default_vtimezone_properties = new VTimezoneProperties("");
+$default_daylight_properties = new DaylightProperties("", "", "", "");
+$default_standard_properties = new StandardProperties("", "", "", "");
 
 
 ?>
