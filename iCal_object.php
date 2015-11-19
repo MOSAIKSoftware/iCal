@@ -195,6 +195,14 @@ class standard extends iCal_object
     }
 }
 
+/**
+ * Print a vcalendar
+ *
+ * This is used for serving the actual calendar once it has been
+ * constructed.
+ *
+ * @param vcalendar $cal the calendar to print
+ */
 function print_vcalendar(vcalendar $cal)
 {
 	echo $cal;
