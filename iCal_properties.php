@@ -44,14 +44,14 @@ abstract class iCal_properties {
  */
 class vcalendar_properties extends iCal_properties
 {
-    protected $version  = "";
-    protected $method   = "";
-    protected $prodid   = "";
-    protected $calname  = "";
-    protected $caldesc  = "";
-    protected $calcolor = "";
-    protected $timezone = "";
-    protected $calscale = "";
+    private $version  = "";
+    private $method   = "";
+    private $prodid   = "";
+    private $calname  = "";
+    private $caldesc  = "";
+    private $calcolor = "";
+    private $timezone = "";
+    private $calscale = "";
 
     function __toString()
     {
@@ -83,12 +83,12 @@ class vcalendar_properties extends iCal_properties
  */
 class vevent_properties extends iCal_properties
 {
-    protected $uid         = "";
-    protected $dtstart     = "";
-    protected $dtend       = "";
-    protected $summary     = "";
-    protected $description = "";
-    protected $dtstamp     = "";
+    private $uid         = "";
+    private $dtstart     = "";
+    private $dtend       = "";
+    private $summary     = "";
+    private $description = "";
+    private $dtstamp     = "";
 
     function __toString()
     {
@@ -117,7 +117,7 @@ class vevent_properties extends iCal_properties
  */
 class vtimezone_properties extends iCal_properties
 {
-    protected $tzid = "";
+    private $tzid = "";
 
     function __toString()
     {
@@ -136,10 +136,10 @@ class vtimezone_properties extends iCal_properties
  */
 class daylight_properties extends iCal_properties
 {
-    protected $tzoffsetfrom = "";
-    protected $tzoffsetto   = "";
-    protected $dtstart      = "";
-    protected $tzname       = "";
+    private $tzoffsetfrom = "";
+    private $tzoffsetto   = "";
+    private $dtstart      = "";
+    private $tzname       = "";
 
     function __toString()
     {
