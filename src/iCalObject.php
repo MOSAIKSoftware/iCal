@@ -79,10 +79,10 @@ abstract class iCalObject
      */
     function addChild(iCalObject $child)
     {
-        if ($this->childIsValid($child) == true) {
+        if ($this->childIsValid($child) === true) {
             array_push($this->child_objects, $child);
         } else {
-            throw new Exception("Invalid child!");
+            throw new \Exception("Invalid child: " . get_class($child));
         }
     }
 
@@ -126,8 +126,8 @@ abstract class iCalObject
 class VCalendar extends iCalObject
 {
     protected $valid_childs = [
-          "VEVENT"
-        , "VTIMEZONE"
+        "MSICAL\\VEVENT"
+        ,"MSICAL\\VTIMEZONE"
     ];
 
     function __construct(VCalendarProperties $properties, array $childs)
@@ -159,8 +159,8 @@ class VEvent extends iCalObject
 class VTimezone extends iCalObject
 {
     protected $valid_childs = [
-          "DAYLIGHT"
-        , "STANDARD"
+          "MSICAL\\DAYLIGHT"
+        , "MSICAL\\STANDARD"
     ];
 
     function __construct(VTimezoneProperties $properties, array $childs)

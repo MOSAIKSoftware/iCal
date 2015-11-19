@@ -167,14 +167,22 @@ class StandardProperties extends DaylightProperties
 
 }
 
+class Defaults {
+    public static $vcalendarProperties;
+    public static $veventProperties;
+    public static $vtimezoneProperties;
+    public static $daylightProperties;
+    public static $standardProperties;
+}
+
 // defaults for the properties
-$default_vcalendar_properties = new VCalendarProperties(
+Defaults::$vcalendarProperties =  new VCalendarProperties(
     "", "", "", "", "", "", "", "");
-$default_vevent_properties = new VEventProperties(
+Defaults::$veventProperties = new VEventProperties(
     "", "", "", "", "", "");
-$default_vtimezone_properties = new VTimezoneProperties("");
-$default_daylight_properties = new DaylightProperties("", "", "", "");
-$default_standard_properties = new StandardProperties("", "", "", "");
+Defaults::$vtimezoneProperties = new VTimezoneProperties("");
+Defaults::$daylightProperties = new DaylightProperties("", "", "", "");
+Defaults::$standardProperties =  new StandardProperties("", "", "", "");
 
 
 ?>

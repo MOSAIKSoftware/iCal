@@ -31,8 +31,9 @@ include 'src/iCalObject.php';
  * @copyright MIT
  */
 
-$vevent = new \MsiCal\VEvent(\MsiCal\$default_vevent_properties);
-$vcal = new \MsiCal\VCalendar(\MsiCal\$default_vcalendar_properties, [$vevent]);
+
+$vevent = new \MsiCal\VEvent(\MsiCal\Defaults::$veventProperties);
+$vcal = new \MsiCal\VCalendar(\MsiCal\Defaults::$vcalendarProperties, [$vevent]);
 
 \MsiCal\print_vcalendar($vcal);
 
