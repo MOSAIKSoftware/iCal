@@ -195,4 +195,9 @@ class standard extends iCal_object
     }
 }
 
+function print_vcalendar(vcalendar $cal)
+{
+	echo $cal;
+}
+
 ?>

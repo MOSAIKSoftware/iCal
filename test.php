@@ -34,6 +34,6 @@ include 'iCal_object.php';
 $vevent = new vevent($default_vevent_properties);
 $vcal = new vcalendar($default_vcalendar_properties, [$vevent]);
 
-echo $vcal
+print_vcalendar($vcal);
 
 ?>
