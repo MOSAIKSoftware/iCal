@@ -32,9 +32,12 @@ include 'src/iCalObject.php';
  */
 
 
-$vevent = new \MsiCal\VEvent(\MsiCal\Defaults::$veventProperties);
-$vcal = new \MsiCal\VCalendar(\MsiCal\Defaults::$vcalendarProperties, [$vevent]);
-
+$vcal = new \MsiCal\VCalendar(["METHOD" => "blah"
+	, "VTIMEZONE" => new \MsiCal\VTimezone([
+							"DAYLIGHT" => new \MsiCal\Daylight([])]
+						)
+	, "VEVENTS" => [new \MsiCal\VEvent([])]]
+    );
 \MsiCal\print_vcalendar($vcal);
 
 ?>
