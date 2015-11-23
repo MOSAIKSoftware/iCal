@@ -193,7 +193,7 @@ class Daylight extends iCalObject
  */
 class Standard extends iCalObject
 {
-    function __construct(VTimezoneProperties $properties)
+    function __construct(StandardProperties $properties)
     {
         $this->properties = $properties;
     }
