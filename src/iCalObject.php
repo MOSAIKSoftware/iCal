@@ -153,6 +153,7 @@ class VCalendar extends iCalObject
             , "X-WR-CALDESC"           => &$this->caldesc
             , "X-APPLE-CALENDAR-COLOR" => &$this->calcolor
             , "X-WR-TIMEZONE"          => &$this->timezone
+            , "CALSCALE"               => &$this->calscale
 
             , "VTIMEZONE"              => &$this->vtimezone
             , "VEVENTS"                => &$this->vevent
