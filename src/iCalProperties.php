@@ -62,7 +62,8 @@ class VCalendarProperties extends iCalProperties
                "X-WR-CALNAME:"           .$this->calname.  "\n".
                "X-WR-CALDESC:"           .$this->caldesc.  "\n".
                "X-APPLE-CALENDAR-COLOR:" .$this->calcolor. "\n".
-               "X-WR-TIMEZONE:"          .$this->timezone. "\n";
+               "X-WR-TIMEZONE:"          .$this->timezone. "\n".
+               "CALSCALE:"               .$this->calscale. "\n";
     }
 
     function __construct($version, $method, $prodid, $calname,
